@@ -1,17 +1,18 @@
 .page-index{
     .m-menu {
       width: 230px;
-      height: 475px;
+      height: 428px;
       box-sizing: border-box;
-      margin-top: -50px;
+      padding-top: 5px;
       margin-left: 20px;
-      color: #FFF;
+      color: #222222;
       position: relative;
-      background: linear-gradient(-180deg, rgba(2, 181, 157, .85) 2%, rgba(22, 146, 183, .85) 100%);
+      border:1px solid #E5E5E5;
+      background: #FFF;
 
       dt {
         height: 50px;
-        padding-top: 15px;
+        padding-top: 0px;
         box-sizing: border-box;
         font-size: 16px;
         font-weight: 400;
@@ -23,6 +24,7 @@
         box-sizing: border-box;
         padding: 2px 12px;
         height: 26px;
+        text-align: -webkit-match-parent;
         cursor: pointer;
 
         &:hover {
@@ -39,8 +41,8 @@
           font-family: 'meituan';
           font-size: 14px;
           font-style: normal;
-          opacity: 0.3;
-          margin-right: 11px;
+          opacity: 0.6;
+          margin-right: 20px;
 
           &:before {
             width: 14px;
@@ -170,6 +172,7 @@
         bottom: 0;
         width: 400px;
         height: 416px;
+        border:1px solid #E5E5E5;
         background: #fff;
         z-index: 9999;
 

@@ -18,7 +18,7 @@
         width: auto;
         .wrapper {
           margin-top: 16px;
-          border: 1px solid #13D1BE;
+          border: 1px solid #E5E5E5;
           border-radius: 4px;
           width: 552px;
           box-sizing: border-box;
@@ -35,11 +35,11 @@
           .el-button {
             width: 88px;
             border: none;
-            background: #13D1BE;
+            background: #ffc300;
             font-size: 16px;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
-            vertical-align: -1px;
+            vertical-align: -3px;
             i {
               font-weight: bold;
             }
@@ -76,7 +76,7 @@
 
               &:hover {
                 background: #F8F8F8;
-                color: #31BBAC;
+                color: #E5E5E5;
               }
             }
 
@@ -109,7 +109,7 @@
             font-size: 12px;
 
             &:hover {
-              color: #31BBAC;
+              color: #E5E5E5;
             }
           }
         }
@@ -142,7 +142,7 @@
               }
 
               &.business:hover {
-                color: #31BBAC;
+                color: #E5E5E5;
               }
             }
           }

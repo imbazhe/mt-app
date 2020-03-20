@@ -6,24 +6,31 @@
       </el-col>
       <el-col :span="15" class="center">
         <div class="wrapper">
-          <el-input v-model="search" placeholder="搜索商家或地点"
-           @focus="focus" @blur="blur" @input='input'></el-input>
+          <el-input
+            class="header-search-input"
+            v-model="search"
+            placeholder="搜索商家或地点"
+            @focus="focus"
+            @blur="blur"
+            @input="input"
+          ></el-input>
           <button class="el-button el-button--primary">
             <i class="el-icon-search"></i>
           </button>
           <dl class="hotPlace" v-if="isHotPlace">
             <dt>热门搜索</dt>
-            <dd v-for="(item,idx) in hotList" :key="idx">{{item}}</dd>
+            <dd v-for="(item,idx) in $store.state.home.hotPlace.slice(0,5)" :key="idx">{{item.name}}</dd>
           </dl>
           <dl class="searchList" v-if="isSearchList">
-            <dd v-for="(item,idx) in searchList" :key="idx">{{item}}</dd>
+            <dd v-for="(item,idx) in searchList" :key="idx">{{item.name}}</dd>
           </dl>
         </div>
-        <p class="suggset">
-          <a href="#">西湖</a>
-          <a href="#">西湖</a>
-          <a href="#">西湖</a>
-          <a href="#">西湖</a>
+        <p class="suggest">
+          <a
+            href="/"
+            v-for="(item,idx) in $store.state.home.hotPlace.slice(0,5)"
+            :key="idx"
+          >{{ item.name }}</a>
         </p>
         <ul class="nav">
           <li>
@@ -67,13 +74,14 @@
 </template>
 
 <script>
+import _ from "lodash";
 export default {
   data() {
     return {
       search: "",
       isFocus: false,
-      hotList: ["西湖", "银泰", "天鹅湖", "火锅", "周边游"],
-      searchList: ["spa", "按摩", "大保健", "嘻嘻嘻", "嘿嘿嘿"]
+      hotList: [],
+      searchList: []
     };
   },
   computed: {
@@ -94,14 +102,57 @@ export default {
         self.isFocus = false;
       }, 200);
     },
-    input(){
-      //Todo
-      console.log('input')
-    }
+    input: _.debounce(async function() {
+      let self = this;
+      let city = self.$store.state.geo.position.city.replace("市", "");
+      self.searchList = [];
+      let {
+        status,
+        data: { top }
+      } = await self.$axios.get("/search/top", {
+        params: {
+          input: self.search,
+          city
+        }
+      });
+
+      self.searchList = top.slice(0, 10);
+    }, 300)
   }
 };
 </script>
 
 <style lang='scss' scoped>
 @import "@/assets/css/public/header/search.scss";
+
+.com-header .header-search-module .header-search-block .header-search-input {
+  border: 1px solid #e5e5e5;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  line-height: 100%;
+  box-sizing: border-box;
+  display: inline-block !important;
+  padding: 15px;
+  font-size: 14px;
+  height: 100%;
+  background: transparent;
+  width: 85.45%;
+}
+.el-icon-search {
+  outline: none;
+  width: 14.55%;
+  box-sizing: border-box;
+  line-height: 100%;
+  height: 100%;
+  background: #ffc300;
+  border: none;
+  float: right;
+  color: #222222;
+  cursor: pointer;
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+  /* &:active {
+          background: #73E1CE;
+        } */
+}
 </style>
