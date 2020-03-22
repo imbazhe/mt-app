@@ -97,6 +97,7 @@ router.get('/products', async (ctx) => {
       city,
     }
   })
+  console.log("products =========="+product)
   if (status === 200) {
     ctx.body = {
       product,

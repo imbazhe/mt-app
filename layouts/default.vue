@@ -26,6 +26,6 @@ export default {
 <style>
 .el-main{
   background: #F4F4F4;
-  padding: 0px 20px;
+  padding: 0 20px;
 }
 </style>

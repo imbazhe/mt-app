@@ -37,15 +37,6 @@ router.get('/province', async (ctx) => {
 })
 
 router.get('/province/:id', async (ctx) => {
-  // 本地数据库连接方式获取数据源
-  // let city = await City.findOne({id: ctx.params.id})
-  //
-  // ctx.body = {
-  //   code: 0,
-  //   city: city.value.map(item => {
-  //     return {province: item.province, id: item.id, name: item.name}
-  //   })
-  // }
   let {status, data: {
       city
     }} = await axios.get(`http://cp-tools.cn/geo/province/${ctx.params.id}?`)
