@@ -34,5 +34,6 @@ export default {
 .page-index {
   width: 74%;
   margin: 0px auto;
+  margin-top: -20px;;
 }
 </style>

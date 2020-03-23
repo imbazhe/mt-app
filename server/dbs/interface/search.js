@@ -97,10 +97,11 @@ router.get('/products', async (ctx) => {
       city,
     }
   })
-  console.log("products =========="+product)
+  //console.log("products =========="+JSON.stringify(product))
   if (status === 200) {
     ctx.body = {
       product,
+      //isAuthenticated() 判断是否为登陆状态
       more: ctx.isAuthenticated() ? more: [],
       login: ctx.isAuthenticated()
     }
